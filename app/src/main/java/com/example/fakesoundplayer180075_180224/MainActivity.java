@@ -29,6 +29,8 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
 
         Musica paranoid = new Musica("I prevail", "Paranoid", 145, R.drawable._36020b88ae8a1c11a5ce051e8318026);
+
+
         while(count < 20)
         {
             playlist.add(paranoid);
@@ -36,9 +38,9 @@ public class MainActivity extends AppCompatActivity {
         }
 
 
+        ListAdapter adapter = new ListAdapter(this, playlist);
 
         ListView listViewMusicas = findViewById(R.id.lstview_Musicas);
-        ListAdapter adapter = new ListAdapter(this, playlist);
 
         listViewMusicas.setAdapter(adapter);
 

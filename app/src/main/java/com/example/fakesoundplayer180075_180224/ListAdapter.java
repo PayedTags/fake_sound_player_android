@@ -5,7 +5,9 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
+import android.widget.BaseAdapter;
 import android.widget.ImageView;
+import android.widget.RatingBar;
 import android.widget.TextView;
 
 import androidx.annotation.LayoutRes;
@@ -14,48 +16,57 @@ import org.w3c.dom.Text;
 
 import java.util.ArrayList;
 
-public class ListAdapter extends ArrayAdapter<Musica> {
+public class ListAdapter extends BaseAdapter {
 
     Context context;
     ArrayList<Musica> playlist;
 
-    ImageView imageViewCapa;
-    TextView textViewTitulo;
-    TextView textViewAutor;
-    TextView textViewDuracao;
 
-    public ListAdapter(Context context, ArrayList<Musica> list)
+    public ListAdapter(Context context, ArrayList<Musica> arrayList)
     {
-        super(context, 0);
         this.context = context;
-        playlist = list;
+        this.playlist = arrayList;
     }
 
     @Override
-    public int getCount() {
-        return 0;
-    }
+    public int getCount() { return playlist.size(); }
+
+    @Override
+    public Musica getItem(int position) { return playlist.get(position); }
 
     @Override
     public long getItemId(int i) {
         return 0;
     }
 
+    //@Override
+    //public long getItemId(int position) { return position; }
+
     @Override
-    public View getView(int position, View convertView, ViewGroup container) {
-        View listItem = convertView;
-        if (listItem == null) {
-            listItem = LayoutInflater.from(context).inflate(R.layout.item_layout, container, false);
+    public View getView(int position, View convertView, ViewGroup parent) {
+        // inflate the layout for each list row
+        if (convertView == null) {
+            convertView = LayoutInflater.from(context).
+                    inflate(R.layout.item_layout, parent, false);
         }
 
-        Musica musica = playlist.get(position);
+        ImageView imageViewCapa;
 
-        TextView titulo = (TextView) listItem.findViewById(R.id.txtview_Titulo);
-        titulo.setText(musica.getTitulo());
+        if(playlist.get(position).getCapa() != 0)
+        {
+            imageViewCapa = convertView.findViewById(R.id.imgCapa);
+            imageViewCapa.setImageResource(playlist.get(position).getCapa());
+        }
 
-        TextView autor = listItem.findViewById(R.id.txtview_Autor);
-        autor.setText(musica.getAutor());
+        TextView textViewTitulo = convertView.findViewById(R.id.txtview_Titulo);
+        TextView textViewAutor = convertView.findViewById(R.id.txtview_Autor);
+        TextView textViewDuracao = convertView.findViewById(R.id.txtview_Duração);
 
-        return listItem;
+
+        textViewTitulo.setText(playlist.get(position).getTitulo());
+        textViewAutor.setText(playlist.get(position).getAutor());
+        textViewDuracao.setText(String.valueOf( playlist.get(position).getSegundos()));
+
+        return convertView;
     }
 }
