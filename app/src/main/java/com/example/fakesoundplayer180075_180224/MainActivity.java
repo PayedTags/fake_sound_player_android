@@ -33,11 +33,15 @@ public class MainActivity extends AppCompatActivity {
 
         Musica paranoid = new Musica("I prevail", "Paranoid", 145, R.drawable._36020b88ae8a1c11a5ce051e8318026);
         Musica AnotherLife = new Musica("Montionless in white", "Another life", 202, R.drawable._9ed23aae5d5cee0646876189ad7dc06);
+        Musica Mood = new Musica("24kgoldn","Mood",141,R.drawable._mood);
+        Musica Bang = new Musica("AJR","Bang!!",171,R.drawable._bang);
 
-        while(count < 10)
+        while(count < 1)
         {
             playlist.add(paranoid);
             playlist.add(AnotherLife);
+            playlist.add(Mood);
+            playlist.add(Bang);
             count++;
         }
 
