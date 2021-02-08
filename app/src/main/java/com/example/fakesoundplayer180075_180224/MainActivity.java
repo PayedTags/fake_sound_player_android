@@ -62,9 +62,11 @@ public class MainActivity extends AppCompatActivity {
                 intent.putExtra("Titulo", playlist.get(position).getTitulo());
                 intent.putExtra("Segundos", playlist.get(position).getSegundos());
                 intent.putExtra("currentTime", currentTime); // para mandar o tempo que estamos da musica para a outra atividade
-                startActivity(intent);
+                startActivityForResult(intent, 1);
             }
         });
+
+
 
 
        /* listViewMusicas.setOnClickListener(new View.OnClickListener() {
@@ -75,7 +77,17 @@ public class MainActivity extends AppCompatActivity {
                 startActivity(i);
             }
         });*/
+    }
 
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data)
+    {
+        super.onActivityResult(requestCode, resultCode, data);
+        // check if the request code is same as what is passed  here it is 2
+        if(requestCode==1)
+        {
+            currentTime = data.getIntExtra("currentTime", 0);
+        }
     }
 
 }

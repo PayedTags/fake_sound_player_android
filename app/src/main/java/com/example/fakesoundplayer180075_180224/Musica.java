@@ -12,6 +12,7 @@ public class Musica {
     private long segundos;
     private int capa;
 
+
     public Musica()
     {
         autor = "";

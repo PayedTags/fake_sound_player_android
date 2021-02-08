@@ -2,7 +2,9 @@ package com.example.fakesoundplayer180075_180224;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Context;
 import android.content.Intent;
+import android.media.AudioManager;
 import android.media.Image;
 import android.media.MediaPlayer;
 import android.os.Bundle;
@@ -22,8 +24,8 @@ public class MainActivity2 extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main2);
-        getSupportActionBar().setTitle("Activity1");
-        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        //getSupportActionBar().setTitle("Activity1");
+        //getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         Intent intent = getIntent();
 
         TextView txt_titulo = findViewById(R.id.txv_Titulo);
@@ -46,20 +48,27 @@ public class MainActivity2 extends AppCompatActivity {
             public void onClick(View view) {
                 if(titulo.equals("Mood"))
                 {
+
+                    stopPlayer();
                     player = MediaPlayer.create(MainActivity2.this, R.raw.mood);
                 }
 
                 if(titulo.equals("Paranoid")){
+                    stopPlayer();
                     player = MediaPlayer.create(MainActivity2.this, R.raw.paranoid);
                 }
 
                 if(titulo.equals("Another life")){
+                    stopPlayer();
                     player = MediaPlayer.create(MainActivity2.this, R.raw.another_life);
                 }
 
                 if(titulo.equals("Bang!!")){
+                    stopPlayer();
                     player = MediaPlayer.create(MainActivity2.this, R.raw.bang);
                 }
+
+
 
                 player.setOnCompletionListener(new MediaPlayer.OnCompletionListener() {
                     @Override
@@ -68,7 +77,6 @@ public class MainActivity2 extends AppCompatActivity {
                     }
                 });
                 player.start();
-
             }
         });
 
@@ -82,14 +90,30 @@ public class MainActivity2 extends AppCompatActivity {
         }
     }
 
+    public void onAudioFocusChange(int focusChange)
+    {
+        switch (focusChange)
+        {
+            case AudioManager.AUDIOFOCUS_GAIN:
+            case AudioManager.AUDIOFOCUS_LOSS_TRANSIENT_CAN_DUCK:
+                 // Resume your media player here
+                break;
+            case AudioManager.AUDIOFOCUS_LOSS:
+            case AudioManager.AUDIOFOCUS_LOSS_TRANSIENT:
+                stopPlayer();// Pause your media player here
+                break;
+        }
+
+    }
+
     @Override
-    protected void onStop() {
-        currentTime = player.getCurrentPosition();
-        Intent i = new Intent(getApplicationContext(), MainActivity.class);
-        i.putExtra("currentTime", currentTime); // para mandar o tempo que estamos da musica para a outra atividade (o footer)
-        startActivity(i);
-        super.onStop();
-        stopPlayer();
+    protected void onDestroy() {
+        super.onDestroy();
+        if(player != null)
+            currentTime = player.getCurrentPosition();
+        Intent i = new Intent();
+        i.putExtra("currentTime", currentTime);
+        setResult(1,i);
     }
 
 }
