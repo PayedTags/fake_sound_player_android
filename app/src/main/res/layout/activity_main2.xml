@@ -16,7 +16,6 @@
         />
 
     <TextView
-
         android:id="@+id/txv_Titulo"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -32,13 +31,67 @@
         android:layout_marginTop="8dp"
         android:textAppearance="@style/TextAppearance.AppCompat.Small" />
 
-    <Button
-        android:id="@+id/btn_player"
-        android:layout_width="150dp"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center"
-        android:textSize="16sp"
-        android:layout_marginTop="16dp"
-        android:layout_marginBottom="24dp"
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="60dp"
+        >
+        
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="00:00"
+            android:id="@+id/durationPlayed"
+            android:textColor="@color/white"
+            android:layout_marginStart="10dp"
+            android:layout_alignParentStart="true"
+            />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="10:28"
+            android:id="@+id/durationTotal"
+            android:textColor="@color/white"
+            android:layout_marginEnd="10dp"
+            android:layout_alignParentEnd="true"
+            />
+        
+        <SeekBar
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/seekBar"
+            android:layout_marginStart="20dp"
+            android:layout_marginEnd="20dp"
+            android:layout_alignParentBottom="true"/>
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="60dp"
+        android:id="@+id/relativeL"
+        android:layout_gravity="bottom"
+        android:layout_marginTop="10dp"
+        >
+
+        <ImageView
+            android:layout_width="35dp"
+            android:layout_height="35dp"
+            android:id="@+id/play"
+            android:layout_centerVertical="true"
+            android:layout_centerHorizontal="true"
+            android:src="@drawable/ic_play"
+            />
+        <ImageView
+        android:layout_width="35dp"
+        android:layout_height="35dp"
+        android:id="@+id/pause"
+        android:layout_centerVertical="true"
+        android:layout_centerHorizontal="true"
+        android:src="@drawable/ic_baseline_pause_24"
+            android:visibility="gone"
         />
+
+    </RelativeLayout>
+
+
 </LinearLayout >

@@ -31,10 +31,10 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        Musica paranoid = new Musica("I prevail", "Paranoid", 145, R.drawable._36020b88ae8a1c11a5ce051e8318026);
-        Musica AnotherLife = new Musica("Montionless in white", "Another life", 202, R.drawable._9ed23aae5d5cee0646876189ad7dc06);
-        Musica Mood = new Musica("24kgoldn","Mood",141,R.drawable._mood);
-        Musica Bang = new Musica("AJR","Bang!!",171,R.drawable._bang);
+        Musica paranoid = new Musica("I prevail", "Paranoid", 145, R.drawable._36020b88ae8a1c11a5ce051e8318026, R.raw.paranoid);
+        Musica AnotherLife = new Musica("Montionless in white", "Another life", 202, R.drawable._9ed23aae5d5cee0646876189ad7dc06, R.raw.another_life);
+        Musica Mood = new Musica("24kgoldn","Mood",141,R.drawable._mood, R.raw.mood);
+        Musica Bang = new Musica("AJR","Bang!!",171,R.drawable._bang, R.raw.bang);
 
         while(count < 1)
         {
@@ -62,6 +62,7 @@ public class MainActivity extends AppCompatActivity {
                 intent.putExtra("Titulo", playlist.get(position).getTitulo());
                 intent.putExtra("Segundos", playlist.get(position).getSegundos());
                 intent.putExtra("currentTime", currentTime); // para mandar o tempo que estamos da musica para a outra atividade
+                intent.putExtra("selectedMp3", playlist.get(position).getMp3());
                 startActivity(intent);
             }
         });

@@ -11,21 +11,23 @@ public class Musica {
     private String titulo;
     private long segundos;
     private int capa;
-
+    private int mp3;
     public Musica()
     {
         autor = "";
         titulo = "";
         segundos = 0;
         capa = 0;
+        mp3 =0;
     }
 
-    public Musica(String autor, String titulo, long segundos, int capa)
+    public Musica(String autor, String titulo, long segundos, int capa, int mp3)
     {
         this.autor = autor;
         this.titulo = titulo;
         this.segundos = segundos;
         this.capa = capa;
+        this.mp3 = mp3;
     }
 
     public Musica(String autor, String titulo, long segundos)
@@ -52,6 +54,7 @@ public class Musica {
         return segundos;
     }
 
+    public int getMp3(){ return mp3; }
     @Override
     public String toString() {
         return "Musica{" +
