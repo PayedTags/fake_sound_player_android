@@ -145,13 +145,12 @@ public class MainActivity2 extends AppCompatActivity {
     }
 
     @Override
-    protected void onStop() {
-        currentTime = player.getCurrentPosition();
-        Intent i = new Intent(getApplicationContext(), MainActivity.class);
-        i.putExtra("currentTime", currentTime); // para mandar o tempo que estamos da musica para a outra atividade (o footer)
-        startActivity(i);
-        super.onStop();
+    protected void onDestroy() {
+        super.onDestroy();
+        player.pause();
         stopPlayer();
+        Intent i = new Intent();
+        setResult(0, i);
     }
 
 }

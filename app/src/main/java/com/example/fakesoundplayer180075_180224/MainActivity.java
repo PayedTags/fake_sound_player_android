@@ -63,7 +63,7 @@ public class MainActivity extends AppCompatActivity {
                 intent.putExtra("Segundos", playlist.get(position).getSegundos());
                 intent.putExtra("currentTime", currentTime); // para mandar o tempo que estamos da musica para a outra atividade
                 intent.putExtra("selectedMp3", playlist.get(position).getMp3());
-                startActivity(intent);
+                startActivityForResult(intent, 0);
             }
         });
 
@@ -76,6 +76,13 @@ public class MainActivity extends AppCompatActivity {
                 startActivity(i);
             }
         });*/
+
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data)
+    {
+        super.onActivityResult(requestCode, resultCode, data);
 
     }
 

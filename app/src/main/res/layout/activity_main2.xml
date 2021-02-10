@@ -35,23 +35,22 @@
         android:layout_width="match_parent"
         android:layout_height="60dp"
         >
-        
+
         <TextView
+            android:id="@+id/durationPlayed"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="00:00"
-            android:id="@+id/durationPlayed"
-            android:textColor="@color/white"
-            android:layout_marginStart="10dp"
             android:layout_alignParentStart="true"
-            />
+            android:layout_marginStart="12dp"
+            android:text="00:00"
+            android:textColor="@color/black" />
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="10:28"
             android:id="@+id/durationTotal"
-            android:textColor="@color/white"
+            android:textColor="@color/black"
             android:layout_marginEnd="10dp"
             android:layout_alignParentEnd="true"
             />
@@ -63,6 +62,7 @@
             android:layout_marginStart="20dp"
             android:layout_marginEnd="20dp"
             android:layout_alignParentBottom="true"/>
+
     </RelativeLayout>
 
     <RelativeLayout
